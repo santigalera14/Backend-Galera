@@ -35,12 +35,12 @@ class ProductManager {
         if (buscado) {
             console.log (buscado)
         } else {
-            console.log ("Not found")
+            console.log ("No se encontro")
         }
     }
 };
 const manager = new ProductManager
 
-manager.addProduct("producto prueba",'este es un producto prueba',200,'sin imagen',"abc123",25)
-manager.addProduct("producto prueba",'este es un producto prueba',"",'sin imagen',"abc123",25)
+manager.addProduct("prueba de producto",'esto es una prueba',200,'image not found',"a",10)
+manager.addProduct("prueba de producto",'esto es una prueba',50,'image not found',"b",20)
 manager.getProductsById(1)
