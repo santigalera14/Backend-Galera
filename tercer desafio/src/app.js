@@ -24,6 +24,6 @@ app.get('/products',(req,res)=>{
 app.get('/products/:pid', (req,res)=>{
     const pid= req.params.pid
     const pfid=prods.find(e=>e.id==pid)
-    if(!pfid){res.send(`There is no product with ID: ${pid.toUpperCase()}`)}
+    if(!pfid){res.send(`No existe producto con ID: ${pid.toUpperCase()}`)}
     else{res.send(pfid)}
 })

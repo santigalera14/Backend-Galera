@@ -8,12 +8,12 @@ export class ProductManager {
 
     async product() {
         try {
-            if (fs.existsSync(this.path)) {// busca si hay o no archivo
+            if (fs.existsSync(this.path)) {
                 const data = await fs.promises.readFile(this.path, 'utf-8')
-                return JSON.parse(data) // consultar porque si pongo data =JSON.parse(data) da error pero usandolo en otra variable da correcto
+                return JSON.parse(data) 
 
             } else {
-                return [] // retorna arreglo vacio para que el addproduct trabaje
+                return [] // devuelve el arreglo vacio para que el addproduct trabaje
             }
         } catch {
             (error) => { return error }
@@ -29,14 +29,14 @@ export class ProductManager {
 
     async addProduct(title, description, price, thumbnail, code, stock) {
         try {
-            if (!title || !description || !price || !thumbnail || !stock || !code) {//analiza si todos los campos estan llenos
-                console.log('ERROR: Not all data is complete')
+            if (!title || !description || !price || !thumbnail || !stock || !code) {//analiza si esta todo lleno
+                console.log('ERROR: no se borro toda la informacion')
                 return
             }
             let list = await this.product()
-            const listCode = list.find(e => e.code === code)// busca si el code esta repetido
+            const listCode = list.find(e => e.code === code)// busca si el codigo esta repetido
             if (listCode) {
-                console.log("The entered code exists, please enter a new one");
+                console.log("El codigo ingresado ya existe, por favor ingresar uno nuevo");
                 return
             };
             let obj = {
@@ -56,7 +56,7 @@ export class ProductManager {
 
             list.push({ ...obj, id })
             await fs.promises.writeFile(this.path, JSON.stringify(list))
-            console.log(`The product with the ID ${id} was generated successfully`)
+            console.log(`El producto con el ID ${id} fue generado con exito`)
 
         }
         catch { (error) => { console.log("error") } }
@@ -70,7 +70,7 @@ export class ProductManager {
                 console.log(itemId)
                 return itemId
             }
-            else { console.log(`There is no product with the id ${id}`) }
+            else { console.log(`No hay producto con este id ${id}`) }
 
         } catch { (error) => { return (error) } }
     }
@@ -80,9 +80,9 @@ export class ProductManager {
             if (list.findIndex(e => e.id === id) !== -1) {
                 const newList = list.filter(e => e.id !== id)
                 await fs.promises.writeFile(this.path, JSON.stringify(newList))
-                console.log(`The product whit ID ${id} was removed`)
+                console.log(`El producto con el id ${id} fue removido`)
             }
-            else { console.log("The product you try delete, no exist") }
+            else { console.log("El producto que intentas borrar no existe") }
         }
         catch { (error) => { return error } }
     }
@@ -94,7 +94,7 @@ export class ProductManager {
             let objKey = Object.keys(k)
             let noId = objKey.find(e => e === "id")
             if (noId) {
-                console.log("Cannot modify id, please enter valid values")
+                console.log("No se puede modificar el id, por favor ingresar un valor valido")
                 return
             };
             const ub = list.findIndex(e => e.id === id)
@@ -102,10 +102,10 @@ export class ProductManager {
                 const objRaw = list[ub]
                 const objMod = { ...objRaw, ...k }
                 list[ub] = objMod
-                console.log("Change done")
+                console.log("Cambio realizado con exito")
                 fs.promises.writeFile(this.path, JSON.stringify(list))
             }
-            else { console.log(`There is no product with the id ${id}`) }
+            else { console.log(`No existe producto con ese id${id}`) }
 
 
         }
