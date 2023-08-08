@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
         if(!limit || limit < 1){
             return res.json(productos);
         }
-        res.send(productos.slice(0, limit));
+        res.json(productos.slice(0, limit));
 
     } catch (error) {
         res.status(500).send({ error: error.message });
@@ -27,12 +27,12 @@ router.get('/:pid', async (req, res) => {
         const producto = await productManager.getProductById(pid);
 
         if(!producto){
-            return res.send({error: 'producto no encontrado'});
+            return res.json({error: 'producto no encontrado'});
         }
         res.json(producto);
 
     } catch (err) {
-        console.log(err);
+        res.status(500).send({ error: error.message });
     }
 });
 
