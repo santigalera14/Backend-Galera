@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "products": [
+            {
+                "code": "HOD-001",
+                "id": 1,
+                "quantity": 2
+            },
+            {
+                "code": "HOD-002",
+                "id": 2,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "products": [
+            {
+                "code": "JOG-005",
+                "id": 15,
+                "quantity": 1
+            },
+            {
+                "code": "JOG-002",
+                "id": 12,
+                "quantity": 2
+            }
+        ]
+    }
+]
